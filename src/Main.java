@@ -12,7 +12,7 @@ import java.awt.event.*;
  * - Event handling (responding to button clicks)
  * - Layout managers (organizing components)
  */
-public class BasicSwingApp {
+public class Main {
     
     // Instance variables for our GUI components
     private JFrame frame;
@@ -25,7 +25,7 @@ public class BasicSwingApp {
     /**
      * Constructor - sets up the GUI
      */
-    public BasicSwingApp() {
+    public Main() {
         createAndShowGUI();
     }
     
@@ -110,7 +110,7 @@ public class BasicSwingApp {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BasicSwingApp();
+                new Main();
             }
         });
     }
