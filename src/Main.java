@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import components.*;
 
 /**
  * BasicSwingApp - A simple Java Swing application demonstrating core concepts
@@ -22,60 +23,32 @@ public class Main {
     private JButton submitButton;
     private JLabel resultLabel;
     
-    /**
-     * Constructor - sets up the GUI
-     */
     public Main() {
         createAndShowGUI();
     }
     
-    /**
-     * Creates and displays the GUI
-     */
+   
     private void createAndShowGUI() {
         // Create the main window (JFrame)
         frame = new JFrame("My First Swing Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
+        frame.setSize(800, 400);
         
         // Create a panel to hold our components
         panel = new JPanel();
-        panel.setLayout(new FlowLayout()); // FlowLayout arranges components left-to-right
+        panel.setLayout(new BorderLayout());
         
-        // Create a label
-        nameLabel = new JLabel("Enter your name:");
-        panel.add(nameLabel);
-        
-        // Create a text field
-        nameField = new JTextField(20); // 20 columns wide
-        panel.add(nameField);
-        
-        // Create a button
-        submitButton = new JButton("Submit");
-        panel.add(submitButton);
-        
-        // Create a result label (initially empty)
-        resultLabel = new JLabel("");
-        resultLabel.setForeground(Color.BLUE);
-        panel.add(resultLabel);
-        
-        // Add event listener to the button
-        // This is called when the button is clicked
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleButtonClick();
-            }
-        });
-        
-        // You can also listen for Enter key in the text field
-        nameField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                handleButtonClick();
-            }
-        });
-        
+        Header header = new Header();
+        panel.add(header, BorderLayout.NORTH);
+
+        IconPanel iconPanel = new IconPanel();
+
+        iconPanel.add(new AppIcon("iconPanel"));
+        iconPanel.add(new AppIcon("iconPanel"));
+        iconPanel.add(new AppIcon("iconPanel"));
+
+        panel.add(iconPanel, BorderLayout.CENTER);
+
         // Add the panel to the frame
         frame.add(panel);
         
