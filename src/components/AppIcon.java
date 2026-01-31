@@ -7,6 +7,7 @@ public class AppIcon extends JButton {
         
     public AppIcon(String name) {
         setToolTipText(name);
+        setText(name);
         setPreferredSize(new Dimension(80, 80));
         setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         setBackground(Color.WHITE);

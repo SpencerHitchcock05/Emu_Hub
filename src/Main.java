@@ -38,7 +38,7 @@ public class Main {
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         
-        Header header = new Header();
+        Header header = new Header(frame);
         panel.add(header, BorderLayout.NORTH);
 
         IconPanel iconPanel = new IconPanel();

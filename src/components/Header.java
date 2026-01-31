@@ -6,10 +6,10 @@ import javax.swing.*;
 
 public class Header extends JPanel {
 
-    public Header() {
+    public Header(JFrame frame) {
         setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(0, 50));
-        add(new HeaderButton());
+        add(new HeaderAddEmu(frame));
     }
 }
