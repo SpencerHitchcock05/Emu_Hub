@@ -5,8 +5,8 @@ import javax.swing.*;
 
 public class HeaderAddEmu extends HeaderButton {
 
-    public HeaderAddEmu(JFrame frame) {
-        super(frame);
+    public HeaderAddEmu(JFrame frame, IconPanel iconPanel) {
+        super(frame, iconPanel);
 
         addActionListener(e -> {
             JDialog dialog = new JDialog(frame, "Input Form", true);
@@ -61,6 +61,8 @@ public class HeaderAddEmu extends HeaderButton {
                 } catch (IOException err) {
                     err.printStackTrace();
                 }
+
+                iconPanel.refreshIcons();
 
                 dialog.dispose();
             });

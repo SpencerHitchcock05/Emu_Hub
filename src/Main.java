@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import components.*;
 
 /**
@@ -37,16 +36,11 @@ public class Main {
         // Create a panel to hold our components
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        
-        Header header = new Header(frame);
-        panel.add(header, BorderLayout.NORTH);
+
 
         IconPanel iconPanel = new IconPanel();
-
-        iconPanel.add(new AppIcon("iconPanel"));
-        iconPanel.add(new AppIcon("iconPanel"));
-        iconPanel.add(new AppIcon("iconPanel"));
-
+        Header header = new Header(frame, iconPanel);
+        panel.add(header, BorderLayout.NORTH);
         panel.add(iconPanel, BorderLayout.CENTER);
 
         // Add the panel to the frame
