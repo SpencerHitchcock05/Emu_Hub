@@ -1,5 +1,6 @@
 package components;
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 
 public class HeaderAddEmu extends HeaderButton {
@@ -51,7 +52,17 @@ public class HeaderAddEmu extends HeaderButton {
             JButton submit = new JButton("Submit");
             submit.addActionListener(ev -> {
                 String emulatorNameValue = emulatorName.getText();
-                dialog.dispose(); // Close the dialog
+                String fileExtensionValue = fileExtension.getText();
+                String pathValue = path.getText();
+
+                try (PrintWriter pw = new PrintWriter(new FileWriter("Emulators.csv", true))) {
+
+                    pw.println(String.join(",", new String[] {emulatorNameValue, fileExtensionValue, pathValue}));
+                } catch (IOException err) {
+                    err.printStackTrace();
+                }
+
+                dialog.dispose();
             });
             
             panel.add(submit);
