@@ -8,10 +8,9 @@ public class GameIcon extends AppIcon {
     public GameIcon(String name) {
         super(name, IconPanel.getExtension(), IconPanel.getPath());
         
-        addActionListener(new ActionListener() {
+        main.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 try {  
                     File curDir = new File("games/" + name);              
                     ProcessBuilder pb = new ProcessBuilder(IconPanel.getPath() , curDir.getAbsolutePath());
