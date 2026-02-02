@@ -11,5 +11,13 @@ public class Header extends JPanel {
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(0, 50));
         add(new HeaderAddEmu(frame, iconPanel));
+
+        HeaderButton backButton = new HeaderButton(frame, iconPanel);
+        backButton.addActionListener(act -> {
+            IconPanel.setExtension("");
+            IconPanel.setPath("");
+            iconPanel.refreshIcons();
+        });
+        add(backButton);
     }
 }

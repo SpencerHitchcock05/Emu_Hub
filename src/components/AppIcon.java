@@ -4,8 +4,16 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class AppIcon extends JButton {
+
+    private String name;
+    private String extension;
+    private String emuPath;
         
-    public AppIcon(String name) {
+    public AppIcon(String name, String extension, String emuPath) {
+        this.name = name;
+        this.extension = extension;
+        this.emuPath = emuPath;
+
         setToolTipText(name);
         setText(name);
         setPreferredSize(new Dimension(80, 80));
@@ -26,18 +34,6 @@ public class AppIcon extends JButton {
                 setBorder(BorderFactory.createLineBorder(originalBorder, 2));
             }
         });
-
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                                
-                setBackground(new Color(230, 255, 230));
-                Timer timer = new Timer(200, evt -> setBackground(Color.WHITE));
-                timer.setRepeats(false);
-                timer.start();
-            }
-        });
-        
     }
 
 }

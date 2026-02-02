@@ -1,0 +1,28 @@
+package components;
+import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+public class GameIcon extends AppIcon {
+
+    public GameIcon(String name) {
+        super(name, IconPanel.getExtension(), IconPanel.getPath());
+        
+        addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {  
+                    File curDir = new File("games/" + name);              
+                    ProcessBuilder pb = new ProcessBuilder(IconPanel.getPath() , curDir.getAbsolutePath());
+                    pb.start();
+                } catch(IOException err) {
+                    err.printStackTrace();
+                }
+            }
+        });
+    }
+    
+}
+
+        
