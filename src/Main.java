@@ -14,12 +14,21 @@ public class Main {
     
    
     private void createAndShowGUI() {
+        
+        
         frame = new JFrame("My First Swing Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
+        frame.getRootPane().setBorder(
+            BorderFactory.createEmptyBorder()
+        );
+        frame.setBackground(new Color(57, 212, 109));
+        frame.getContentPane().setBackground(new Color(57, 212, 109));
         
         panel = new JPanel();
+        panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
+        panel.setBackground(new Color(57, 212, 109));
 
 
         IconPanel iconPanel = new IconPanel();
@@ -33,9 +42,10 @@ public class Main {
     }
     
 
-    public static void main(String[] args) {
-        // It's important to create and update Swing components on the Event Dispatch Thread (EDT)
-        // This ensures thread safety
+    public static void main(String[] args) throws Exception {
+        UIManager.setLookAndFeel(
+            UIManager.getSystemLookAndFeelClassName()
+        );
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

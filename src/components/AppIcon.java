@@ -3,7 +3,10 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
@@ -11,10 +14,12 @@ import javax.swing.*;
 
 public class AppIcon extends JLayeredPane {
 
+    final private int shadowOffset = 3;
+    final private Color shadowColor = new Color(39, 140, 74);
     private String name;
     private String extension;
     private String emuPath;
-    protected JButton main;
+    protected ShadowButton main;
     protected  JButton deleteButton;
         
     public AppIcon(String name, String extension, String emuPath) {
@@ -22,32 +27,34 @@ public class AppIcon extends JLayeredPane {
         this.extension = extension;
         this.emuPath = emuPath;
 
-        main = new JButton();
+        main = new ShadowButton(4);
         main.setToolTipText(name);
         main.setText(name);
         main.setBounds(0,0,80,80);
-        main.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
         main.setBackground(Color.WHITE);
         main.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        main.setForeground(Color.BLACK);
+        main.setBackground(Color.WHITE);
+
 
         main.addMouseListener(new MouseAdapter() {
-            Color originalBorder = getBorder() != null ? Color.DARK_GRAY : Color.GRAY;
             
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+                setBackground(Color.BLUE);
             }
             
             @Override
             public void mouseExited(MouseEvent e) {
-                setBorder(BorderFactory.createLineBorder(originalBorder, 2));
+                setBackground(Color.WHITE);
             }
         });
 
         deleteButton = new JButton("✕");
         deleteButton.setMargin(new Insets(0, 0, 0, 0));
         deleteButton.setFocusable(false);
-        deleteButton.setBounds(50, 5, 25, 25);
+        deleteButton.setBounds(45, 5, 25, 25);
+        deleteButton.setBorder(BorderFactory.createEmptyBorder());
 
         deleteButton.addActionListener(e -> {
 
@@ -90,4 +97,27 @@ public class AppIcon extends JLayeredPane {
         add(deleteButton, Integer.valueOf(1));
     }
 
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+
+        // Anti-aliasing (optional for smoother edges)
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        int w = getWidth();
+        int h = getHeight();
+
+        // ---- Draw shadow ----
+        g2.setColor(shadowColor);
+        g2.fillRect(shadowOffset, shadowOffset, w - 1 - shadowOffset, h - 1 - shadowOffset);
+
+        // ---- Draw button background ----
+        g2.setColor(getBackground());
+        g2.fillRect(0, 0, w - 1 - shadowOffset, h - 1 - shadowOffset);
+
+        g2.dispose();
+
+        super.paintComponent(g);
+    }
 }

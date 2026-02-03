@@ -1,4 +1,5 @@
 package components;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.io.*;
 import javax.swing.*;
@@ -10,6 +11,8 @@ public class IconPanel extends JPanel {
 
     public IconPanel() {
         setLayout(new FlowLayout(FlowLayout.LEFT, 16, 16));
+        setBackground(new Color(24, 240, 96));
+        setOpaque(true);
         refreshIcons();
     }    
 

@@ -6,7 +6,9 @@ import javax.swing.*;
 public class HeaderAddEmu extends HeaderButton {
 
     public HeaderAddEmu(JFrame frame, IconPanel iconPanel) {
-        super(frame, iconPanel);
+        super("+", "Add Emulator");
+
+        setFont(new Font("Arial", Font.PLAIN, 48));
 
         addActionListener(e -> {
             JDialog dialog = new JDialog(frame, "Input Form", true);
@@ -30,7 +32,7 @@ public class HeaderAddEmu extends HeaderButton {
             panel.add(row2);
 
             JPanel row3 = new JPanel(new GridLayout(1, 3, 5, 5));
-            JLabel pathLabel = new JLabel("Emluator Name:");
+            JLabel pathLabel = new JLabel("Path:");
             row3.add(pathLabel);
             JTextField path = new JTextField(20);
             row3.add(path);
