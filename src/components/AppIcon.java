@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
-import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
@@ -34,27 +34,19 @@ public class AppIcon extends JLayeredPane {
         main.setBackground(Color.WHITE);
         main.setCursor(new Cursor(Cursor.HAND_CURSOR));
         main.setForeground(Color.BLACK);
-        main.setBackground(Color.WHITE);
 
-
-        main.addMouseListener(new MouseAdapter() {
-            
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                setBackground(Color.BLUE);
-            }
-            
-            @Override
-            public void mouseExited(MouseEvent e) {
-                setBackground(Color.WHITE);
-            }
-        });
 
         deleteButton = new JButton("✕");
         deleteButton.setMargin(new Insets(0, 0, 0, 0));
         deleteButton.setFocusable(false);
-        deleteButton.setBounds(45, 5, 25, 25);
+        deleteButton.setOpaque(false);
+        deleteButton.setContentAreaFilled(false);
+        deleteButton.setBounds(48, 0, 25, 25);
         deleteButton.setBorder(BorderFactory.createEmptyBorder());
+        deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        deleteButton.setRolloverEnabled(false);
+        deleteButton.setFont(new Font("Roboto", Font.PLAIN, 16));
+        deleteButton.setForeground(Color.RED);
 
         deleteButton.addActionListener(e -> {
 
@@ -66,7 +58,6 @@ public class AppIcon extends JLayeredPane {
                 while ((line = br.readLine()) != null) {
                     String[] parts = line.split(",", -1);
 
-                    // keep everything EXCEPT the one we want to delete
                     if (!(parts[0].equals(name) && parts[1].equals(extension) && parts[2].equals(emuPath))) {
                         lines.add(line);
                     }
@@ -75,7 +66,6 @@ public class AppIcon extends JLayeredPane {
                 err.printStackTrace();
             }
 
-            // overwrite file
             try (PrintWriter pw = new PrintWriter(new FileWriter(inputFile))) {
                 for (String l : lines) {
                     pw.println(l);
@@ -91,7 +81,7 @@ public class AppIcon extends JLayeredPane {
             parent.repaint();
         });
 
-
+        
         setPreferredSize(new Dimension(80, 80));
         add(main, Integer.valueOf(0));
         add(deleteButton, Integer.valueOf(1));

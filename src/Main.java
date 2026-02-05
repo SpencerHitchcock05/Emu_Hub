@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import components.*;
-
+import java.io.File;
 
 public class Main {
     
@@ -16,7 +16,7 @@ public class Main {
     private void createAndShowGUI() {
         
         
-        frame = new JFrame("My First Swing Application");
+        frame = new JFrame("Emu Hub");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 400);
         frame.getRootPane().setBorder(
@@ -24,7 +24,10 @@ public class Main {
         );
         frame.setBackground(new Color(57, 212, 109));
         frame.getContentPane().setBackground(new Color(57, 212, 109));
-        
+        System.out.println(this.getClass());
+        Image image = new ImageIcon(new File("resources/emu_icon.png").getAbsolutePath()).getImage();
+        frame.setIconImage(image);
+
         panel = new JPanel();
         panel.setOpaque(false);
         panel.setLayout(new BorderLayout());
