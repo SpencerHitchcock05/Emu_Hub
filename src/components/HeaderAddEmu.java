@@ -57,9 +57,11 @@ public class HeaderAddEmu extends HeaderButton {
                 String fileExtensionValue = fileExtension.getText();
                 String pathValue = path.getText();
 
-                try (PrintWriter pw = new PrintWriter(new FileWriter("Emulators.csv", true))) {
+                String fileExtensionValueFiltered = fileExtensionValue.replaceAll(" ", "");
+                fileExtensionValueFiltered = fileExtensionValueFiltered.replaceAll(",", "|");
 
-                    pw.println(String.join(",", new String[] {emulatorNameValue, fileExtensionValue, pathValue}));
+                try (PrintWriter pw = new PrintWriter(new FileWriter("Emulators.csv", true))) {
+                    pw.println(String.join(",", new String[] {emulatorNameValue, fileExtensionValueFiltered, pathValue}));
                 } catch (IOException err) {
                     err.printStackTrace();
                 }

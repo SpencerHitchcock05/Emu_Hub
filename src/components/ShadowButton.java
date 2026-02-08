@@ -41,7 +41,7 @@ public class ShadowButton extends JButton {
         g2.setColor(getForeground());
         FontMetrics fm = g2.getFontMetrics();
         int textX = (w - shadowOffset - fm.stringWidth(getText())) / 2;
-        int textY = (h - shadowOffset - fm.getHeight()) / 2 + fm.getAscent();
+        int textY = (h - shadowOffset - fm.getHeight()) + fm.getAscent();
         g2.drawString(getText(), textX, textY);
 
         g2.dispose();

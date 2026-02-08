@@ -32,13 +32,21 @@ public class IconPanel extends JPanel {
             }
         } else {
             try {
+
+                String[] extensionsList = Extension.split("\\|");
+
                 File dir = new File("games");
 
-                String[] files = dir.list((d, name) -> name.toLowerCase().endsWith(Extension));
+                for (int i = 0; i < extensionsList.length; i++) {       
 
-                if (files != null) {
-                    for (String name : files) {
-                        add(new GameIcon(name));
+                    final int index = i;      
+                    System.out.println(extensionsList[index]); 
+                    String[] files = dir.list((d, name) -> name.toLowerCase().endsWith(extensionsList[index]));
+
+                    if (files != null) {
+                        for (String name : files) {
+                            add(new GameIcon(name));
+                        }
                     }
                 }
                 

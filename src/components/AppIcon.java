@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.io.*;
@@ -34,6 +35,15 @@ public class AppIcon extends JLayeredPane {
         main.setBackground(Color.WHITE);
         main.setCursor(new Cursor(Cursor.HAND_CURSOR));
         main.setForeground(Color.BLACK);
+        main.setVerticalAlignment(SwingConstants.BOTTOM);
+        main.setVerticalTextPosition(SwingConstants.BOTTOM);
+
+        ImageIcon icon = new ImageIcon(new File("resources/Console_Logos/" + extension.substring(1) + ".png").getAbsolutePath());
+        Image img = icon.getImage().getScaledInstance(
+            60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
+        );
+        JLabel label = new JLabel(new ImageIcon(img));
+        label.setBounds(8, 0, 60, 70);
 
 
         deleteButton = new JButton("✕");
@@ -84,7 +94,8 @@ public class AppIcon extends JLayeredPane {
         
         setPreferredSize(new Dimension(80, 80));
         add(main, Integer.valueOf(0));
-        add(deleteButton, Integer.valueOf(1));
+        add(label, Integer.valueOf(1));
+        add(deleteButton, Integer.valueOf(2));
     }
 
     
