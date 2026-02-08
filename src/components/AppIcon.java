@@ -37,14 +37,30 @@ public class AppIcon extends JLayeredPane {
         main.setForeground(Color.BLACK);
         main.setVerticalAlignment(SwingConstants.BOTTOM);
         main.setVerticalTextPosition(SwingConstants.BOTTOM);
+        add(main, Integer.valueOf(0));
 
-        ImageIcon icon = new ImageIcon(new File("resources/Console_Logos/" + extension.substring(1) + ".png").getAbsolutePath());
-        Image img = icon.getImage().getScaledInstance(
-            60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
-        );
-        JLabel label = new JLabel(new ImageIcon(img));
-        label.setBounds(8, 0, 60, 70);
+        String[] extensionList = extension.split("\\|");
+        File icons = new File("resources/Console_Logos");
+        String imgName = "";
 
+        for (int i = 0; i < extensionList.length; i++) {
+            final int index = i;
+            String[] imgs = icons.list((d, fileName) -> fileName.toLowerCase().contains(extensionList[index].substring(1)));
+            if (imgs.length > 0) {
+                imgName = imgs[0];
+                break;
+            }
+        }
+
+        if (!imgName.isEmpty()) {
+            ImageIcon icon = new ImageIcon(new File("resources/Console_Logos/" + imgName).getAbsolutePath());
+            Image img = icon.getImage().getScaledInstance(
+                60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
+            );
+            JLabel label = new JLabel(new ImageIcon(img));
+            label.setBounds(8, 0, 60, 70);
+            add(label, Integer.valueOf(1));
+        }
 
         deleteButton = new JButton("✕");
         deleteButton.setMargin(new Insets(0, 0, 0, 0));
@@ -93,8 +109,6 @@ public class AppIcon extends JLayeredPane {
 
         
         setPreferredSize(new Dimension(80, 80));
-        add(main, Integer.valueOf(0));
-        add(label, Integer.valueOf(1));
         add(deleteButton, Integer.valueOf(2));
     }
 

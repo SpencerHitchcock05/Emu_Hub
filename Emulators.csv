@@ -1,4 +1,4 @@
 snes,.sfc,test
-TEST,.nes|.sfc,test
+TEST,.nes,test
 TEST,.z64,test
 test,.sfc|.sgc,test

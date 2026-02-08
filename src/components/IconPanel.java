@@ -40,7 +40,6 @@ public class IconPanel extends JPanel {
                 for (int i = 0; i < extensionsList.length; i++) {       
 
                     final int index = i;      
-                    System.out.println(extensionsList[index]); 
                     String[] files = dir.list((d, name) -> name.toLowerCase().endsWith(extensionsList[index]));
 
                     if (files != null) {
