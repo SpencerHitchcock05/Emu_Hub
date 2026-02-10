@@ -6,10 +6,12 @@ import javax.swing.*;
 public class ShadowButton extends JButton {
 
     protected int shadowOffset;
+    private boolean centered;
     final private Color shadowColor = new Color(39, 140, 74);
 
-    public ShadowButton(int shadowOffset) {
+    public ShadowButton(int shadowOffset, boolean centered) {
         this.shadowOffset = shadowOffset;
+        this.centered = centered;
         setPreferredSize(new Dimension(40, 40));
         setOpaque(false);
         setFocusPainted(false);
@@ -18,6 +20,10 @@ public class ShadowButton extends JButton {
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(shadowOffset, shadowOffset, shadowOffset, shadowOffset));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    public ShadowButton(int shadowOffset) {
+        this(shadowOffset, true);
     }
 
     
@@ -41,7 +47,7 @@ public class ShadowButton extends JButton {
         g2.setColor(getForeground());
         FontMetrics fm = g2.getFontMetrics();
         int textX = (w - shadowOffset - fm.stringWidth(getText())) / 2;
-        int textY = (h - shadowOffset - fm.getHeight()) + fm.getAscent();
+        int textY = (h - shadowOffset - fm.getHeight()) / (centered? 2 : 1) + fm.getAscent();
         g2.drawString(getText(), textX, textY);
 
         g2.dispose();

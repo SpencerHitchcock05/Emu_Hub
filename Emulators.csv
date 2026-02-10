@@ -2,3 +2,5 @@ snes,.sfc,test
 TEST,.nes,test
 TEST,.z64,test
 test,.sfc|.sgc,test
+test,.test,test
+SNES9x,.test,C:\Users\spenc\OneDrive\Desktop\snes9x-1.60-win32-x64\snes9x-x64.exe

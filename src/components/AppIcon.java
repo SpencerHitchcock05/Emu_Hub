@@ -9,9 +9,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 
 public class AppIcon extends JLayeredPane {
 
@@ -28,7 +30,7 @@ public class AppIcon extends JLayeredPane {
         this.extension = extension;
         this.emuPath = emuPath;
 
-        main = new ShadowButton(4);
+        main = new ShadowButton(4, false);
         main.setToolTipText(name);
         main.setText(name);
         main.setBounds(0,0,80,80);
@@ -60,6 +62,28 @@ public class AppIcon extends JLayeredPane {
             JLabel label = new JLabel(new ImageIcon(img));
             label.setBounds(8, 0, 60, 70);
             add(label, Integer.valueOf(1));
+        } else if (!emuPath.isEmpty()) {                     
+            File emuFile = new File(emuPath);
+
+            if (emuFile.exists()) {
+                Icon icon = FileSystemView.getFileSystemView().getSystemIcon(emuFile);
+                
+                if (icon != null) {
+                    int iconWidth = icon.getIconWidth();
+                    int iconHeight = icon.getIconHeight();
+
+                    BufferedImage image = new BufferedImage(iconWidth, iconHeight, BufferedImage.TYPE_INT_ARGB);
+                    Graphics2D g = image.createGraphics();
+                    icon.paintIcon(null, g, 0, 0);
+                    g.dispose();
+                    Image img = image.getScaledInstance(
+                        60, 60 * iconHeight / iconWidth, Image.SCALE_SMOOTH
+                    );
+                    JLabel label = new JLabel(new ImageIcon(img));
+                    label.setBounds(8, 0, 60, 70);
+                    add(label, Integer.valueOf(1));
+                }
+            }
         }
 
         deleteButton = new JButton("✕");
