@@ -11,8 +11,8 @@ public class Header extends JPanel {
         setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         setBackground(new Color(57, 212, 109));
         setPreferredSize(new Dimension(0, 60));
-        add(new HeaderAddEmu(frame, iconPanel));
         setOpaque(true);
+        add(new HeaderAddEmu(frame, iconPanel));
 
         HeaderButton backButton = new HeaderButton("<", "Back");
         backButton.setFont(new Font("Roboto", Font.PLAIN, 48));
