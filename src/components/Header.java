@@ -13,6 +13,7 @@ public class Header extends JPanel {
         setPreferredSize(new Dimension(0, 60));
         setOpaque(true);
         add(new HeaderAddEmu(frame, iconPanel));
+        add(new HeaderAddGame(frame, iconPanel));
 
         HeaderButton backButton = new HeaderButton("<", "Back");
         backButton.setFont(new Font("Roboto", Font.PLAIN, 48));
