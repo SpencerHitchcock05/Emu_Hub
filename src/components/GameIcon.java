@@ -12,7 +12,7 @@ public class GameIcon extends AppIcon {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {  
-                    File curDir = new File("games/" + name);              
+                    File curDir = new File(System.getProperty("user.home"), "EmuHubGames\\" + name); 
                     ProcessBuilder pb = new ProcessBuilder(IconPanel.getPath() , curDir.getAbsolutePath());
                     pb.start();
                 } catch(IOException err) {
