@@ -49,6 +49,11 @@ public class HeaderAddGame extends HeaderButton {
             submit.addActionListener(ev -> {
                 String gameNameValue = gameName.getText();
                 String pathValue = path.getText();
+                if (gameNameValue.equals("")) {
+                    gameNameValue = pathValue.substring(pathValue.lastIndexOf('\\'));
+                } else {
+                    gameNameValue = gameNameValue + pathValue.substring(pathValue.lastIndexOf('.'));
+                }
 
                 File gameFolder = new File(System.getProperty("user.home"), "EmuHubGames");
                 if (!gameFolder.exists()) {
