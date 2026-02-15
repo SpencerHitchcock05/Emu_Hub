@@ -24,7 +24,7 @@ public class Main {
         );
         frame.setBackground(new Color(57, 212, 109));
         frame.getContentPane().setBackground(new Color(57, 212, 109));
-        Image image = new ImageIcon(new File("resources/emu_icon.png").getAbsolutePath()).getImage();
+        Image image = new ImageIcon(new File("assets/emu_icon.png").getAbsolutePath()).getImage();
         frame.setIconImage(image);
 
         panel = new JPanel();

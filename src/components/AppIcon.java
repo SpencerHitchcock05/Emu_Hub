@@ -40,7 +40,7 @@ public class AppIcon extends JLayeredPane {
         add(main, Integer.valueOf(0));
 
         String[] extensionList = extension.split("\\|");
-        File icons = new File("resources/Console_Logos");
+        File icons = new File("assets/Console_Logos");
         String imgName = "";
 
         for (int i = 0; i < extensionList.length; i++) {
@@ -53,7 +53,7 @@ public class AppIcon extends JLayeredPane {
         }
 
         if (!imgName.isEmpty()) {
-            ImageIcon icon = new ImageIcon(new File("resources/Console_Logos/" + imgName).getAbsolutePath());
+            ImageIcon icon = new ImageIcon(new File("assets/Console_Logos/" + imgName).getAbsolutePath());
             Image img = icon.getImage().getScaledInstance(
                 60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
             );

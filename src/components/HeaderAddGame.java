@@ -69,8 +69,7 @@ public class HeaderAddGame extends HeaderButton {
                     Path src = Paths.get(pathValue);
                     Path trgt = Paths.get(gameFolder.getAbsolutePath() + "/" + gameNameValue);
 
-                    //change to .move, after testing
-                    Files.copy(src, trgt, StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(src, trgt, StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException err) {
                     JOptionPane.showMessageDialog(
                         null,                       
@@ -90,7 +89,7 @@ public class HeaderAddGame extends HeaderButton {
             dialog.add(panel);
             dialog.pack();
             dialog.setLocationRelativeTo(frame);
-            dialog.setVisible(true); // This blocks until closed!
+            dialog.setVisible(true); 
         });
     }
 }
