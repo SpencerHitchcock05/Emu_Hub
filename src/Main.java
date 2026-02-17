@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import components.*;
 import java.io.File;
+import java.net.URL;
 
 public class Main {
     
@@ -24,8 +25,11 @@ public class Main {
         );
         frame.setBackground(new Color(57, 212, 109));
         frame.getContentPane().setBackground(new Color(57, 212, 109));
-        Image image = new ImageIcon(new File("assets/emu_icon.png").getAbsolutePath()).getImage();
-        frame.setIconImage(image);
+        URL iconURL = Main.class.getResource("/resources/emu_icon.png");
+        if (iconURL != null) {
+            frame.setIconImage(new ImageIcon(iconURL).getImage());
+        }
+        
 
         panel = new JPanel();
         panel.setOpaque(false);

@@ -39,28 +39,29 @@ public class AppIcon extends JLayeredPane {
         main.setVerticalTextPosition(SwingConstants.BOTTOM);
         add(main, Integer.valueOf(0));
 
-        String[] extensionList = extension.split("\\|");
-        File icons = new File("assets/Console_Logos");
-        String imgName = "";
+        // String[] extensionList = extension.split("\\|");
+        // File icons = new File("assets/Console_Logos");
+        // String imgName = "";
 
-        for (int i = 0; i < extensionList.length; i++) {
-            final int index = i;
-            String[] imgs = icons.list((d, fileName) -> fileName.toLowerCase().contains(extensionList[index].substring(1)));
-            if (imgs.length > 0) {
-                imgName = imgs[0];
-                break;
-            }
-        }
+        // for (int i = 0; i < extensionList.length; i++) {
+        //     final int index = i;
+        //     String[] imgs = icons.list((d, fileName) -> fileName.toLowerCase().contains(extensionList[index].substring(1)));
+        //     if (imgs.length > 0) {
+        //         imgName = imgs[0];
+        //         break;
+        //     }
+        // }
 
-        if (!imgName.isEmpty()) {
-            ImageIcon icon = new ImageIcon(new File("assets/Console_Logos/" + imgName).getAbsolutePath());
-            Image img = icon.getImage().getScaledInstance(
-                60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
-            );
-            JLabel label = new JLabel(new ImageIcon(img));
-            label.setBounds(8, 0, 60, 70);
-            add(label, Integer.valueOf(1));
-        } else if (!emuPath.isEmpty()) {                     
+        // if (!imgName.isEmpty()) {
+        //     ImageIcon icon = new ImageIcon(new File("assets/Console_Logos/" + imgName).getAbsolutePath());
+        //     Image img = icon.getImage().getScaledInstance(
+        //         60, 60 * icon.getIconHeight() / icon.getIconWidth(), Image.SCALE_SMOOTH
+        //     );
+        //     JLabel label = new JLabel(new ImageIcon(img));
+        //     label.setBounds(8, 0, 60, 70);
+        //     add(label, Integer.valueOf(1));
+        // } else 
+        if (!emuPath.isEmpty()) {                     
             File emuFile = new File(emuPath);
 
             if (emuFile.exists()) {
@@ -98,7 +99,7 @@ public class AppIcon extends JLayeredPane {
 
         deleteButton.addActionListener(e -> {
 
-            File inputFile = new File("Emulators.csv");
+            File inputFile = new File(System.getProperty("user.home") + "\\EmuHubGames\\Emulators\\Emulators.csv");
             List<String> lines = new ArrayList<>();
 
             try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {

@@ -14,6 +14,7 @@ public class GameIcon extends AppIcon {
                 try {  
                     File curDir = new File(System.getProperty("user.home"), "EmuHubGames\\" + name); 
                     ProcessBuilder pb = new ProcessBuilder(IconPanel.getPath() , curDir.getAbsolutePath());
+                    pb.directory(new File(IconPanel.getPath()).getParentFile());
                     pb.start();
                 } catch(IOException err) {
                     err.printStackTrace();

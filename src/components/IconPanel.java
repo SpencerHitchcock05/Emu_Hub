@@ -2,6 +2,7 @@ package components;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.io.*;
+import java.nio.file.*;
 import javax.swing.*;
 
 public class IconPanel extends JPanel {
@@ -20,7 +21,13 @@ public class IconPanel extends JPanel {
         removeAll();
 
         if (Extension.equals("")) {
-            try (BufferedReader br = new BufferedReader(new FileReader("Emulators.csv"))) {
+            try {
+                Path emulatorsPath = Paths.get(System.getProperty("user.home"), "\\EmuHubGames\\Emulators\\Emulators.csv");
+                Files.createDirectories(emulatorsPath.getParent());
+                if (Files.notExists(emulatorsPath)) {
+                    Files.createFile(emulatorsPath);
+                }
+                BufferedReader br = new BufferedReader(new FileReader(emulatorsPath.toFile()));
                 String line;
 
                 while ((line = br.readLine()) != null) {
